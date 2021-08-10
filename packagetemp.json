@@ -72,6 +72,7 @@
     "eslint-plugin-prettier": "3.0.1",
     "eslint-plugin-react": "7.12.4",
     "parcel": "1.12.3",
+    "parcel-bundler": "1.12.3",
     "parcel-proxy-server": "1.1.0",
     "prettier": "1.16.4",
     "sass": "1.37.5",

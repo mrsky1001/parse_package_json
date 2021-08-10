@@ -38,41 +38,33 @@ if (os.path.exists(src) & os.path.exists(dst)):
                 nameDst = re.search(r'"\S*":', lineDst[0])[0]
 
                 for lineF1 in srcText.splitlines():
-                    lineSrc = re.search(r'"\S*":.*"\S*"', lineF1)
+                    if not flagIsExist:
+                        lineSrc = re.search(r'"\S*":.*"\S*"', lineF1)
 
-                    if lineSrc:
-                        nameSrc = re.search(r'"\S*":', lineSrc[0])[0]
+                        if lineSrc:
+                            nameSrc = re.search(r'"\S*":', lineSrc[0])[0]
 
-                        contentMatchDst = re.search(r':.*"\S*"', lineDst[0])
-                        content = contentMatchDst[0] if contentMatchDst else ''
-                        contentDst = content.replace('^', '')
-                        contentDst = contentDst.replace('~', '')
+                            if nameSrc == nameDst:
+                                flagIsExist = True
 
-                        dstText = dstText.replace(content, contentDst)
+                                contentMatchSrc = re.search(r':.*"\S*"', lineSrc[0])
+                                contentMatchDst = re.search(r':.*"\S*"', lineDst[0])
 
+                                contentSrc = contentMatchSrc[0] if contentMatchSrc else ''
+                                contentDst = contentMatchDst[0] if contentMatchDst else ''
 
-                        if nameSrc == nameDst:
-                            flagIsExist = True
+                                if contentSrc != contentDst:
+                                    msg = nameDst + contentDst + ' --> ' + contentSrc + '\n'
 
-                            contentMatchSrc = re.search(r':.*"\S*"', lineSrc[0])
-                            contentSrc = contentMatchSrc[0] if contentMatchSrc else ''
+                                    print(msg)
+                                    log_out.write(msg)
 
-                            if contentSrc != contentDst:
-                                msg = nameDst + contentDst + ' --> ' + contentSrc + '\n'
-
-                                print(msg)
-                                log_out.write(msg)
-
-                                dstText = dstText.replace(contentDst, contentSrc)
+                                    dstText = dstText.replace(lineDst[0], lineSrc[0])
 
                 if not flagIsExist:
                     msg = 'Warning! That dependency not exist in template!\n --->' + lineDst[0] + '\n'
                     print(msg)
                     log_out.write(msg)
-
-        msg = 'Replace all [^, ~]!\n'
-        print(msg)
-        log_out.write(msg)
 
         with open(dst, "w") as file_out:
             file_out.write(dstText)
