@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "update": ". src/get_core.sh",
+     "update": ". src/get_core.sh",
     "init": "(cd src/core/; . ./bash/init.sh) ",
     "commit": "(cd src/core/; . ./bash/commit.sh) ",
     "push": "(cd src/core/; . ./bash/push.sh) ",
@@ -12,7 +12,7 @@
     "dev-fix": "npm run valid; npm run fix; node src/core/proxy.js",
     "dev2-fix": "npm run valid; npm run fix; node src/core/proxy_devel2.js",
     "build": "npm run fix && npm run valid && parcel build src/core/index.html --public-url ./ --no-cache",
-    "valid": "eslint src   && prettier --check \"src/**/*.{js, .scss}\"",
+    "valid": "yaspeller .",
     "fix": "eslint src --fix",
     "kill-back": "kill -9 `lsof -t -i tcp:4567`",
     "kill-front": "kill -9 `lsof -t -i tcp:1234`"

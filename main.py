@@ -66,6 +66,12 @@ if (os.path.exists(src) & os.path.exists(dst)):
                     print(msg)
                     log_out.write(msg)
 
+        dstText = dstText.replace('^', '')
+        dstText = dstText.replace('~', '')
+        msg = 'Replace all [^, ~]!\n'
+        print(msg)
+        log_out.write(msg)
+
         with open(dst, "w") as file_out:
             file_out.write(dstText)
 
