@@ -1,17 +1,81 @@
 {
-  "name": "client",
+  "name": "eservice-project-front",
   "version": "1.0.0",
   "description": "",
-  "scripts": {},
+  "scripts": {
+     "update": ". src/get_core.sh",
+    "init": "(cd src/core/; . ./bash/init.sh) ",
+    "commit": "(cd src/core/; . ./bash/commit.sh) ",
+    "push": "(cd src/core/; . ./bash/push.sh) ",
+    "dev": "npm run kill-front; node src/core/proxy.js",
+    "dev2": "npm run kill-front; node src/core/proxy_devel2.js",
+    "dev-fix": "npm run valid; npm run fix; node src/core/proxy.js",
+    "dev2-fix": "npm run valid; npm run fix; node src/core/proxy_devel2.js",
+    "build": "npm run fix && npm run valid && parcel build src/core/index.html --public-url ./ --no-cache",
+    "valid": "yaspeller .",
+    "fix": "eslint src --fix",
+    "kill-back": "kill -9 `lsof -t -i tcp:4567`",
+    "kill-front": "kill -9 `lsof -t -i tcp:1234`"
+  },
   "author": "Mr.Sky1001",
+  "license": "ISC",
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "prettier",
+      "eslint",
+      "git add"
+    ],
+    "*.scss": [
+      "stylelint",
+      "git add"
+    ]
+  },
   "dependencies": {
     "axios": "0.21.1",
+    "animate.css": "4.1.1",
+    "date-fns": "2.23.0",
+    "history": "5.0.0",
+    "moment": "2.29.1",
     "bootstrap": "4.6.0",
     "font-awesome": "4.7.0",
-    "react": "16.14.0"
+    "react": "16.14.0",
+    "react-accessible-accordion": "3.3.5",
+    "react-bootstrap": "1.6.1",
+    "react-dom": "16.14.0",
+    "react-bootstrap-table": "4.3.1",
+    "react-bootstrap-table-next": "3.3.5",
+    "react-bootstrap-table2-editor": "1.4.0",
+    "react-bootstrap-table2-filter": "1.3.3",
+    "react-bootstrap-table2-overlay": "2.0.0",
+    "react-bootstrap-table2-paginator": "2.1.2",
+    "react-bootstrap-table2-toolkit": "2.1.3",
+    "react-datepicker": "4.2.0",
+    "react-overlay-loader": "0.0.3",
+    "react-router-dom": "5.2.0",
+    "react-select": "4.3.1",
+    "react-toastify": "5.5.0",
+    "toasted-notes": "3.2.0"
   },
   "devDependencies": {
+    "@babel/core": "7.12.9",
+    "@babel/plugin-proposal-class-properties": "7.4.4",
+    "@babel/plugin-proposal-decorators": "7.4.4",
+    "@babel/plugin-proposal-object-rest-spread": "7.4.4",
+    "@babel/plugin-transform-regenerator": "7.4.4",
+    "@babel/plugin-transform-runtime": "7.12.1",
+    "@babel/preset-env": "7.4.4",
+    "@babel/preset-react": "7.0.0",
+    "babel-eslint": "10.0.1",
+    "babel-plugin-transform-inline-environment-variables": "0.4.3",
     "eslint": "5.16.0",
-    "parcel": "1.12.3"
+    "eslint-config-prettier": "4.1.0",
+    "eslint-plugin-prettier": "3.0.1",
+    "eslint-plugin-react": "7.12.4",
+    "parcel": "1.12.3",
+    "parcel-bundler": "1.12.3",
+    "parcel-proxy-server": "1.1.0",
+    "prettier": "1.16.4",
+    "sass": "1.37.5",
+    "yaspeller": "5.1.0"
   }
 }
