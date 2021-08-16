@@ -12,8 +12,6 @@ if __name__ == "__main__":
     src = sys.argv[1] if sys.argv[1] else ''
     dst = sys.argv[2] if sys.argv[2] else ''
 
-print(src)
-print(dst)
 
 if (os.path.exists(src) & os.path.exists(dst)):
     srcText = ''
