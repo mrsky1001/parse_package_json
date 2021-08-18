@@ -1,4 +1,4 @@
-# parse_package_json
+# perfectly package json
 The script reduces the dependency versions to a single number (it also removes ^ and ~ from the dependency lines).
 
 The script accepts the path to the reference `package.json` as input and to the file being checked.  
